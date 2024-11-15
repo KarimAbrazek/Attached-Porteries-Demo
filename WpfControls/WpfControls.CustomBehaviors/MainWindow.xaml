@@ -1,0 +1,43 @@
+﻿<Window x:Class="WpfControls.CustomBehaviors.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfControls.CustomBehaviors"
+        xmlns:cb="clr-namespace:WpfControls.CustomBehaviors.Behaviors"
+       
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="450">
+    <StackPanel>
+        <TextBox Width="200" Height="30" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" cb:TextBoxPlaceholder.Placeholder="Enter text here..." Margin="20"/>
+        <Button Width="150" Height="40" Content="Submit" cb:ButtonIcon.ShowIcon="True" Margin="20">
+            <cb:ButtonIcon.Icon>
+                <Image Source="/Resourses/Icons/icon.png" Width="16" Height="16" />
+            </cb:ButtonIcon.Icon>
+        </Button>
+
+        <DataGrid 
+            x:Name="dg"
+            AutoGenerateColumns="False"
+            cb:DataGridColumnValidate.EnableValidation="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Column1"
+                                    Width="*"
+                            Binding="{Binding Column1Value}" 
+                            cb:DataGridColumnValidate.LowerThreshold="50"
+                            cb:DataGridColumnValidate.UpperThreshold="150"
+                            cb:DataGridColumnValidate.BackgroundColor="LightPink"
+                            cb:DataGridColumnValidate.ForegroundColor="DarkRed" />
+
+                <DataGridTextColumn Header="Column2"
+                            Binding="{Binding Column2Value}"
+                             Width="*"    
+                            cb:DataGridColumnValidate.LowerThreshold="30"
+                            cb:DataGridColumnValidate.UpperThreshold="100"
+                            cb:DataGridColumnValidate.BackgroundColor="LightGreen"
+                            cb:DataGridColumnValidate.ForegroundColor="DarkGreen" />
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </StackPanel>
+</Window>
